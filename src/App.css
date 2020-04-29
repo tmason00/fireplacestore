@@ -2,16 +2,33 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+img{
+  width: 350px;
+  height: 350px;
+  padding: 5px;
+  margin: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1, h2, h3, p{
+  padding: 5px;
+  margin: 2px;
 }
+
+h1, h2, h3{
+  font-weight: bold;
+}
+
+.product-container{
+  display: inline-flex;
+  flex-flow: row wrap;
+  padding: 5px;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  background: none;
+
+}
+
 
 .App-header {
   background-color: #282c34;
