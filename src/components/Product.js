@@ -15,6 +15,7 @@ function Product(props){
     const [stock, setStock]=React.useState([props.stock]);
 
 
+
     /* Styled Button */
 
     const StyledButton = withStyles({

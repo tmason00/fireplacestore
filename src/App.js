@@ -213,17 +213,16 @@ function App(props) {
                 </Toolbar>
             </AppBar>
 
-            <div className="product-container">
-               {item}
 
-             </div>
 
           </div>
         </div>
 
                 <Switch>
                     <main>
-                        <Route path={"/store"} exact component={Store}/>
+                        <Route path={"/"} exact component={Store}>
+                            <div className="product-container"> {item} </div>
+                        </Route>
                         <Route path={"/cart"} component={Cart}>{cartItems}
                         </Route>
                         <Route path={"/admin"} component={Form}>

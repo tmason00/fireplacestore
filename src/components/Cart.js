@@ -8,25 +8,6 @@ function Cart(props) {
 
 
 
-            /* Styled Button */
-
-            const StyledButton = withStyles({
-                root: {
-                    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-                    borderRadius: 3,
-                    border: 0,
-                    color: 'white',
-                    padding: '0 30px',
-                    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-                },
-                label: {
-                    textTransform: 'capitalize',
-                },
-            })(Button);
-
-            /* End Styled Button */
-
-
     return (
                 <div className="App">
                     <div className="cart-container">
@@ -34,12 +15,13 @@ function Cart(props) {
                         <div>
                             <h5>{props.name}</h5>
                             <h5>${props.price} </h5>
-                            {count}
+                            <div>
+                            <button onClick={() => setCount(count + 1)}> + </button>
+                                {count}
+                             <button onClick={() => setCount(count - 1)}> - </button>
+                            </div>
                         </div>
-                        <div>
-                            <StyledButton variant="contained" onClick={() => setCount(count + 1)}> + </StyledButton>
-                            <StyledButton variant="contained" onClick={() => setCount(count - 1)}> - </StyledButton>
-                        </div>
+
                     </div>
 
 

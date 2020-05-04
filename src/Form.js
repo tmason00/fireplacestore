@@ -24,7 +24,8 @@ function App() {
 
 
     const handleChange = prop=> event=>{
-        setValues({...values, [prop]: event.target.value})
+        setValues({...values, [prop]: event.target.value});
+
     };
 
     const handleUpdate = prop=> event=>{
@@ -108,10 +109,11 @@ let itemEles = product.map((dg, idx)=>
 );
 
 
+
 return (
     <div className="App">
         {itemEles}
-        <div>
+        <div style={{padding: "20px"}}>
             <input placeholder={"Name..."} onChange={handleChange("name")} value={values.name} required/>
             <input placeholder={"Image..."} onChange={handleChange("image")} value={values.image} required/>
             <input placeholder={"Price..."} onChange={handleChange("price")} value={values.price} required/>

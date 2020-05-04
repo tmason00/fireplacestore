@@ -40,9 +40,12 @@ h1, h2, h3{
 
 
 .cart-container{
-  padding: 5px;
-  width: 400px;
-  height: 400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+      padding: 5px;
+    justify-content: flex-start;
+margin: 5px;
   text-align: start;
   background: none;
 
@@ -63,4 +66,8 @@ h1, h2, h3{
 
 .App-link {
   color: #61dafb;
+}
+
+.form{
+    display: inline-block;
 }
