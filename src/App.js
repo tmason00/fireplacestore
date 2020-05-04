@@ -1,12 +1,21 @@
 import React from 'react';
 import './App.css';
+import fire from "./Fire";
 import Cart from "./components/Cart";
-import Store from "./components/Store";
+import Product from "./components/Product";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    NavLink
+} from "react-router-dom";
+import Form from "./Form";
+
 
 
 /* Material UI */
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,10 +27,19 @@ import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Store from "./components/Store";
 
 
 
-function App() {
+function App(props) {
+
+    const [products, setProducts]=React.useState([]);
+    const [cart, updateCart]=React.useState([]);
+    const [stock, setStock]=React.useState([props.stock]);
+
+
+
+    const db = fire.firestore();
 
 /* App Menu Bar */
 
@@ -47,9 +65,70 @@ function App() {
     /* End App Menu Bar */
 
 
+    /* Products */
+
+    React.useEffect(()=>{
+        let storeProducts =[];
+
+        db.collection("fireplaces").get().then(function(snapshot){
+            snapshot.forEach(function(doc){
+                const object = doc.data();
+
+                let item = {
+                    image: object.image,
+                    name: object.name,
+                    price: object.price,
+                    stock: object.stock,
+                    id: doc.id
+                };
+
+               storeProducts.push(item);
+            });
+
+            setProducts(storeProducts);
+        });
+
+    }, [db]);
+
+    let item = products.map ((it,idx,)=>
+        <Product key={idx} image={it.image} name={it.name} price={it.price} stock={it.stock}/>,
+    );
+    /* End Products */
+
+    /* Cart */
+
+    React.useEffect(()=>{
+        let cartProducts =[];
+
+        db.collection("fireplaces").get().then(function(snapshot){
+            snapshot.forEach(function(doc){
+                const object = doc.data();
+
+                let item = {
+                    image: object.image,
+                    name: object.name,
+                    price: object.price,
+                    stock: object.stock,
+                    id: doc.id
+                };
+
+                cartProducts.push(item);
+            });
+
+            updateCart(cartProducts);
+        });
+
+    }, [db]);
+
+    let cartItems = cart.map ((it,idx,)=>
+        <Cart key={idx} image={it.image} name={it.name} price={it.price} stock={it.stock}/>,
+    );
+
+    /* End Cart */
 
 
-/* Drawer */
+
+    /* Drawer */
     const useStyles = makeStyles({
         list: {
             width: 250,
@@ -92,7 +171,12 @@ function App() {
             </div>
         );
 
+
+
+
         return (
+            <Router>
+            <div className="App">
         <div className={classes.root}>
             <AppBar color="default" position="static" >
                 <Toolbar>
@@ -106,31 +190,49 @@ function App() {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>About</MenuItem>
-                        <MenuItem onClick={handleClose}>Shop</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem onClick={handleClose}><NavLink exact to={"/"}>Store</NavLink></MenuItem>
+                        <MenuItem onClick={handleClose}><NavLink to={"/admin/"}>Admin</NavLink></MenuItem>
+
                     </Menu>
                     <Typography variant="h5" className={classes.title}>
                         The Fireplace Store
                     </Typography>
-                    <Button color="inherit">Admin Login</Button>
-                    <div>
+                     <div>
                         {['cart'].map((anchor) => (
                             <React.Fragment key={anchor}>
                                 <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
                                 <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-                                    {list(anchor)} <Cart/>
+                                    {list(anchor)} {cartItems}
+                                    <Button variant="contained" color="primary" onClick={()=>setStock(stock-1) + alert("Thank you for your purchase!")}> Complete Purchase </Button>
                                 </Drawer>
                             </React.Fragment>
                         ))}
                     </div>
                 </Toolbar>
             </AppBar>
-           <Store/>
 
+            <div className="product-container">
+               {item}
 
+             </div>
+
+          </div>
         </div>
 
+                <Switch>
+                    <main>
+                        <Route path={"/"} exact component={Store}/>
+                        <Route path={"/cart"} component={Cart}>
+                        </Route>
+                        <Route path={"/admin"} component={Form}>
+                        </Route>
+
+
+
+                    </main>
+
+                </Switch>
+            </Router>
 
 
 

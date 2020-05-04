@@ -2,13 +2,13 @@ import firebase from "firebase";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCLGgSXDVuRzviUqcd6w5NRNs__LS2Fq6Q",
-    authDomain: "fireplacestore-8a740.firebaseapp.com",
-    databaseURL: "https://fireplacestore-8a740.firebaseio.com",
-    projectId: "fireplacestore-8a740",
-    storageBucket: "fireplacestore-8a740.appspot.com",
-    messagingSenderId: "309355407496",
-    appId: "1:309355407496:web:d3ee3288bc1257a6b8973d"
+    apiKey: "AIzaSyCySxGCR_8b-wukNRU4QoHA9_DP4Q5YLWQ",
+    authDomain: "fireplace-store-6cb1c.firebaseapp.com",
+    databaseURL: "https://fireplace-store-6cb1c.firebaseio.com",
+    projectId: "fireplace-store-6cb1c",
+    storageBucket: "fireplace-store-6cb1c.appspot.com",
+    messagingSenderId: "35196510464",
+    appId: "1:35196510464:web:c928ae987c97c26d4dd3e5"
 
 };
 

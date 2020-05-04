@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 img{
@@ -7,6 +7,10 @@ img{
   height: 350px;
   padding: 5px;
   margin: 5px;
+}
+
+img:hover {
+  opacity: 0.5;
 }
 
 h1, h2, h3, p{
@@ -19,13 +23,29 @@ h1, h2, h3{
 }
 
 .product-container{
-  display: inline-flex;
-  flex-flow: row wrap;
+   display: inline-flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   padding: 5px;
+   justify-content: center;
+   text-align: center;
+ }
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.cart-container{
   padding: 5px;
   width: 400px;
   height: 400px;
-  text-align: center;
+  text-align: start;
   background: none;
+
 
 }
 
@@ -43,13 +63,4 @@ h1, h2, h3{
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
