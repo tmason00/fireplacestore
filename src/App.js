@@ -192,6 +192,8 @@ function App(props) {
                     >
                         <MenuItem onClick={handleClose}><NavLink exact to={"/"}>Store</NavLink></MenuItem>
                         <MenuItem onClick={handleClose}><NavLink to={"/admin/"}>Admin</NavLink></MenuItem>
+                        <MenuItem onClick={handleClose}><NavLink to={"/cart/"}>Cart</NavLink></MenuItem>
+
 
                     </Menu>
                     <Typography variant="h5" className={classes.title}>
@@ -221,8 +223,8 @@ function App(props) {
 
                 <Switch>
                     <main>
-                        <Route path={"/"} exact component={Store}/>
-                        <Route path={"/cart"} component={Cart}>
+                        <Route path={"/store"} exact component={Store}/>
+                        <Route path={"/cart"} component={Cart}>{cartItems}
                         </Route>
                         <Route path={"/admin"} component={Form}>
                         </Route>

@@ -22,6 +22,7 @@ function App() {
     const [showUpdate, toggleUpdate]=React.useState(false);
     const [changed, setChange]=React.useState(false);
 
+
     const handleChange = prop=> event=>{
         setValues({...values, [prop]: event.target.value})
     };
@@ -39,6 +40,7 @@ function App() {
                 price: "",
                 stock:""
             })
+
         });
     };
 
@@ -110,16 +112,16 @@ return (
     <div className="App">
         {itemEles}
         <div>
-            <input placeholder={"Name..."} onChange={handleChange("name")} value={values.name}/>
-            <input placeholder={"Image..."} onChange={handleChange("image")} value={values.image}/>
-            <input placeholder={"Price..."} onChange={handleChange("price")} value={values.price}/>
-            <input placeholder={"Stock..."} onChange={handleChange("stock")} value={values.stock}/>
+            <input placeholder={"Name..."} onChange={handleChange("name")} value={values.name} required/>
+            <input placeholder={"Image..."} onChange={handleChange("image")} value={values.image} required/>
+            <input placeholder={"Price..."} onChange={handleChange("price")} value={values.price} required/>
+            <input placeholder={"Stock..."} onChange={handleChange("stock")} value={values.stock} required/>
 
             <button onClick={submit}> Add Product</button>
         </div>
         {showUpdate&&
         <div>
-            <input placeholder={"Name..."} onChange={handleUpdate("name")} value={values.name}/>
+            <input placeholder={"Name..."} onChange={handleUpdate("name")} value={values.name} />
             <input placeholder={"Image..."} onChange={handleUpdate("image")} value={values.image}/>
             <input placeholder={"Price..."} onChange={handleUpdate("price")} value={values.price}/>
             <input placeholder={"Stock..."} onChange={handleUpdate("stock")} value={values.stock}/>
